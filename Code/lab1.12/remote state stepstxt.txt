@@ -1,0 +1,32 @@
+step1 
+change into step1 and execute :
+
+
+
+terraform init
+terraform plan -out storageaccount.tfplan
+
+terraform output storage_account_access_key
+
+terraform output -raw backend_config | tee remote_backend.hcl
+
+
+export ARM_ACCESS_KEY={storage_account_access_key}
+
+
+Step 2
+
+
+copy  remote_backend.hcl from step1 to step2
+
+Copy the contents of file remote_backend.hcl to file provider.tf within terraform {} block 
+
+Run “terraform init” and it would successfully initialize the remote backend “azurerm”
+
+
+Verify under the storage account, a state file would be available. Expand the properties for the file and notice lease status and state. Its unlocked and available because currently no operation is been performed.
+
+
+run terraform plan 
+run terraform apply -auto-approve
+run terraform destroy -auto-approve

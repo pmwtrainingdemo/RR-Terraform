@@ -1,0 +1,9 @@
+az account list --output table
+az account set --subscription <Azure-SubscriptionId>
+
+
+create sp 
+
+az ad sp create-for-rbac --role="Contributor" 
+--scopes="/subscriptions/SUBSCRIPTION_ID"
+
